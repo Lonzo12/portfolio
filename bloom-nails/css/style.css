@@ -1,0 +1,131 @@
+:root {
+  --porcelain: #fbf6f4;
+  --plum: #2b1733;
+  --muted: #6a5870;
+  --line: #e6d9d6;
+  --soft: #f3e7e4;
+  --accent: #d98e9a;      /* changed by the shade picker */
+  --on-accent: #2b1733;   /* text colour that stays readable on the accent */
+  --radius: 999px;
+  --surface: #ffffff;
+  --field-line: #cdbab6;
+  --line-2: #dcc9c5;
+}
+
+[data-bs-theme="dark"] {
+  --porcelain: #16101a;
+  --plum: #f1e7ee;
+  --muted: #b8a7bf;
+  --line: #352740;
+  --soft: #20162a;
+  --surface: #1d1426;
+  --field-line: #4a3a56;
+  --line-2: #3a2c45;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+
+body {
+  font-family: "Figtree", system-ui, sans-serif;
+  color: var(--plum);
+  background: var(--porcelain);
+  line-height: 1.65;
+}
+
+h1, h2, .brand, .bottle-name, .price {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-weight: 400;
+}
+
+.skip-link { position: absolute; left: .5rem; top: .5rem; z-index: 10; background: var(--accent); color: var(--on-accent); padding: .5rem .75rem; }
+:focus-visible { outline: 3px solid var(--plum); outline-offset: 3px; }
+
+.brand { font-size: 2rem; color: var(--plum); font-style: italic; }
+.nav-link { color: var(--plum); font-weight: 500; }
+.nav-link:hover { color: var(--muted); }
+
+.btn-accent {
+  background: var(--accent); color: var(--on-accent); border: 0; border-radius: var(--radius);
+  font-weight: 600; padding-inline: 1.5rem; transition: background .4s, color .4s;
+}
+.btn-accent:hover { background: var(--accent); color: var(--on-accent); filter: brightness(.94); }
+
+/* Hero */
+.hero { padding: 3.5rem 0 5rem; }
+.hero-title { font-size: clamp(3.2rem, 8vw, 6.2rem); line-height: .95; letter-spacing: -.02em; margin-bottom: 1.25rem; }
+.hero-lead { max-width: 30rem; color: var(--muted); font-size: 1.1rem; }
+
+.shades { border: 0; padding: 0; margin: 2rem 0 0; }
+.shade-list { display: grid; grid-template-columns: repeat(4, 3.4rem); gap: .9rem; }
+.shade { position: relative; width: 3.4rem; height: 3.4rem; }
+.shade input { position: absolute; inset: 0; opacity: 0; cursor: pointer; margin: 0; }
+.shade span {
+  display: block; width: 100%; height: 100%; border-radius: 50%;
+  background: var(--c); border: 3px solid var(--porcelain);
+  box-shadow: 0 0 0 1px var(--line); transition: box-shadow .2s, transform .2s;
+}
+.shade input:checked + span { box-shadow: 0 0 0 3px var(--plum); transform: scale(1.08); }
+.shade input:focus-visible + span { box-shadow: 0 0 0 3px var(--plum), 0 0 0 6px var(--porcelain); }
+
+/* Bottle: the one memorable element */
+.bottle { display: grid; justify-items: center; }
+.bottle-cap { width: 5.5rem; height: 7.5rem; background: var(--plum); border-radius: 14px 14px 6px 6px; position: relative; z-index: 1; margin-bottom: -1rem; }
+.bottle-cap::after { content: ""; position: absolute; inset: 14px 30px 14px 30px; border-radius: 8px; background: rgba(255,255,255,.12); }
+.bottle-glass {
+  width: min(100%, 22rem); aspect-ratio: 1 / 1.08;
+  background: var(--accent); color: var(--on-accent);
+  border-radius: 36% 36% 28% 28% / 22% 22% 18% 18%;
+  display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem;
+  box-shadow: inset -18px -18px 40px rgba(0,0,0,.12), inset 14px 14px 30px rgba(255,255,255,.25);
+  transition: background .5s, color .5s;
+}
+.bottle-name { font-size: clamp(2.4rem, 5vw, 3.4rem); line-height: 1; display: block; }
+.bottle-note { display: block; font-size: .95rem; margin-top: .4rem; opacity: .85; }
+
+/* Sections */
+.section { padding: 4.5rem 0; }
+.section-soft { background: var(--soft); }
+.section-title { font-size: clamp(2.2rem, 4vw, 3.2rem); line-height: 1.02; margin-bottom: 1rem; }
+.muted { color: var(--muted); }
+
+/* Menu list */
+.menu-list { margin: 0; }
+.menu-list > div { display: grid; grid-template-columns: 1fr auto 5rem; align-items: baseline; gap: 1rem; padding: .95rem 0; border-bottom: 1px solid var(--line); }
+.menu-list dt { font-weight: 600; }
+.menu-list dd { margin: 0; }
+.menu-list .time { color: var(--muted); font-size: .9rem; }
+.menu-list .price { font-size: 1.7rem; text-align: right; line-height: 1; }
+
+.studio-facts { list-style: none; padding: 0; margin: 0; }
+.studio-facts li { padding: 1rem 0; border-bottom: 1px solid var(--line-2); }
+.studio-facts strong { display: inline-block; min-width: 9rem; font-weight: 600; }
+
+/* Form */
+.form-control, .form-select { border-radius: 12px; border-color: var(--field-line); padding: .7rem .9rem; background-color: var(--surface); }
+.form-control[readonly] { background: var(--soft); }
+.form-label { font-weight: 600; font-size: .95rem; }
+.form-status { padding: .9rem 1rem; border-left: 4px solid var(--accent); background: var(--surface); }
+
+.site-footer { padding: 1.5rem 0; color: var(--muted); font-size: .9rem; border-top: 1px solid var(--line); }
+
+@media (max-width: 575.98px) {
+  .shade-list { grid-template-columns: repeat(4, 1fr); justify-items: start; }
+  .menu-list > div { grid-template-columns: 1fr 5rem; }
+  .menu-list .time { grid-column: 1; grid-row: 2; }
+  .menu-list .price { grid-column: 2; grid-row: 1 / span 2; }
+  .studio-facts strong { display: block; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+
+/* Theme toggle */
+.theme-toggle { width: 2.5rem; height: 2.5rem; border-radius: 50%; border: 1.5px solid currentColor; background: transparent; color: var(--plum); display: inline-grid; place-items: center; cursor: pointer; }
+.theme-toggle:hover { background: rgba(127,127,127,.18); }
+.theme-toggle svg { width: 1.15rem; height: 1.15rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.theme-toggle .icon-sun { display: none; }
+[data-bs-theme="dark"] .theme-toggle .icon-sun { display: inline; }
+[data-bs-theme="dark"] .theme-toggle .icon-moon { display: none; }
+[data-bs-theme="dark"] .navbar-toggler { border-color: var(--line); }
+[data-bs-theme="dark"] .navbar-toggler-icon { filter: invert(1); }
